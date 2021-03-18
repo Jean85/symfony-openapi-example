@@ -7,9 +7,18 @@ namespace Tests\Functional;
 use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Response;
+use Tests\OpenApiClient;
 
 abstract class BaseFunctionalTestCase extends WebTestCase
 {
+    protected function createOpenApiClient(): OpenApiClient
+    {
+        $openApiClient = $this->getContainer()->get(OpenApiClient::class);
+        $this->assertInstanceOf(OpenApiClient::class, $openApiClient);
+
+        return $openApiClient;
+    }
+
     public function assertStatusCode(int $expectedStatusCode, KernelBrowser $client, string $message = null): void
     {
         $response = $client->getResponse();

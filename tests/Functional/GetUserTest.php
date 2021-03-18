@@ -11,16 +11,16 @@ class GetUserTest extends BaseFunctionalTestCase
 {
     public function testGetUserWithWrongParameter(): void
     {
-        $client = self::createClient();
+        $client = $this->createOpenApiClient();
 
-        $client->request(Request::METHOD_GET, '/api/users/jean85');
+        $client->request(Request::METHOD_GET, '/api/users/invalid');
 
         $this->assertStatusCode(Response::HTTP_NOT_FOUND, $client);
     }
 
     public function testGetUser(): void
     {
-        $client = self::createClient();
+        $client = $this->createOpenApiClient();
 
         $client->request(Request::METHOD_GET, '/api/users/1');
 

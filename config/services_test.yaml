@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    League\OpenAPIValidation\PSR7\ResponseValidator:
+        factory: ['@League\OpenAPIValidation\PSR7\ValidatorBuilder', 'getResponseValidator']
+
+    Tests\OpenApiClient:
+        public: true

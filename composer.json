@@ -22,12 +22,14 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.12.81",
-        "vimeo/psalm": "^4.6",
-        "phpunit/phpunit": "^9.5",
         "facile-it/facile-coding-standard": "^0.4.1",
         "facile-it/symfony-functional-testcase": "^1.1",
-        "symfony/browser-kit": "^5.2"
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^0.12.81",
+        "phpstan/phpstan-phpunit": "^0.12.18",
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "^5.2",
+        "vimeo/psalm": "^4.6"
     },
     "autoload": {
         "psr-4": {
