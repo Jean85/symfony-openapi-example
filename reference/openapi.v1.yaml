@@ -1,9 +1,18 @@
 openapi: 3.0.0
 info:
-  title: symfony-openapi-example
+  title: Symfony + OpenAPI example
   version: '1.0'
+  contact:
+    name: Alessandro Lai
+    email: alessandro.lai85@gmail.com
+    url: 'https://alessandrolai.dev'
+  license:
+    name: MIT
+    url: 'https://github.com/Jean85/symfony-openapi-example/blob/main/LICENSE'
+  description: An example repository demonstrating the usage of an OpenAPI spec in the code of a Symfony web API application
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:80'
+    description: Local
 paths:
   '/users/{userId}':
     parameters:
@@ -15,7 +24,6 @@ paths:
         description: Id of an existing user.
     get:
       summary: Get User Info by User ID
-      tags: []
       responses:
         '200':
           description: User Found
@@ -37,6 +45,8 @@ paths:
           description: User Not Found
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
+      tags:
+        - user
     patch:
       summary: Update User Information
       operationId: patch-users-userId
@@ -79,9 +89,19 @@ paths:
           application/json:
             schema:
               type: object
+              minProperties: 1
               properties:
-                asd:
+                firstName:
                   type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                dateOfBirth:
+                  type: string
+                  format: date
+                  example: '1997-10-31'
             examples:
               Update First Name:
                 value:
@@ -94,6 +114,8 @@ paths:
                   lastName: Baker
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
+      tags:
+        - user
   /user:
     post:
       summary: Create New User
@@ -148,6 +170,8 @@ paths:
                   dateOfBirth: '1996-08-24'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+      tags:
+        - user
 components:
   schemas:
     User:
@@ -191,3 +215,6 @@ components:
         - lastName
         - email
         - emailVerified
+tags:
+  - name: user
+    description: Operations over users
