@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Functional;
 
 use Facile\SymfonyFunctionalTestCase\WebTestCase;
@@ -10,9 +12,9 @@ class GetUserTest extends WebTestCase
     public function testGetUser(): void
     {
         $client = self::createClient();
-        
+
         $client->request(Request::METHOD_GET, '/api/user/jean85');
-        
+
         $this->assertStatusCodeIsSuccessful($client);
     }
 }
