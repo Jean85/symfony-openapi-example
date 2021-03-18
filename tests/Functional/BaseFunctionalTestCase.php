@@ -41,4 +41,20 @@ abstract class BaseFunctionalTestCase extends WebTestCase
 
         return $content ?: 'Response had no content available';
     }
+
+    /**
+     * @return scalar[]|scalar[][]
+     */
+    protected function decodeResponse(OpenApiClient $client): array
+    {
+        $content = $client->getResponse()->getContent();
+        $this->assertNotFalse($content);
+        $this->assertJson($content);
+
+        $decodedResponse = json_decode($content, true, JSON_THROW_ON_ERROR);
+
+        $this->assertIsArray($decodedResponse, 'Content of response was not a JSON object, got: ' . $content);
+
+        return $decodedResponse;
+    }
 }
