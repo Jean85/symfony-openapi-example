@@ -8,7 +8,7 @@ use League\OpenAPIValidation\PSR7\Exception\ValidationFailed;
 use League\OpenAPIValidation\PSR7\RequestValidator;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -29,11 +29,11 @@ class RequestValidationEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::REQUEST => 'validateRequest',
+            KernelEvents::CONTROLLER => 'validateRequest',
         ];
     }
 
-    public function validateRequest(RequestEvent $event): void
+    public function validateRequest(ControllerEvent $event): void
     {
         if (! $event->isMasterRequest()) {
             return;

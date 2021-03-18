@@ -17,6 +17,9 @@
     "composer/xdebug-handler": {
         "version": "1.4.5"
     },
+    "crell/api-problem": {
+        "version": "3.5"
+    },
     "dnoegel/php-xdg-base-dir": {
         "version": "v0.1.1"
     },
@@ -388,6 +391,9 @@
             "config/packages/routing.yaml",
             "config/routes.yaml"
         ]
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.4"
     },
     "symfony/service-contracts": {
         "version": "v2.2.0"

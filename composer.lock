@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a398f22cbb231571fc5bf81587919f7d",
+    "content-hash": "23962a0d4fdee1b239b1e85a7ac8e5c1",
     "packages": [
         {
             "name": "cebe/php-openapi",
@@ -71,6 +71,76 @@
                 "source": "https://github.com/cebe/php-openapi"
             },
             "time": "2021-02-16T09:31:22+00:00"
+        },
+        {
+            "name": "crell/api-problem",
+            "version": "3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Crell/ApiProblem.git",
+                "reference": "8e4b97ca5938f9e851889816601eb85abf33c6d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Crell/ApiProblem/zipball/8e4b97ca5938f9e851889816601eb85abf33c6d9",
+                "reference": "8e4b97ca5938f9e851889816601eb85abf33c6d9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "laminas/laminas-diactoros": "^2.0",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "1.*"
+            },
+            "suggest": {
+                "psr/http-factory": "Common interfaces for PSR-7 HTTP message factories",
+                "psr/http-message": "Common interface for HTTP messages"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Crell\\ApiProblem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Larry Garfield",
+                    "email": "larry@garfieldtech.com",
+                    "homepage": "http://www.garfieldtech.com/"
+                }
+            ],
+            "description": "PHP wrapper for the api-problem IETF specification",
+            "homepage": "https://github.com/Crell/ApiProblem",
+            "keywords": [
+                "api-problem",
+                "http",
+                "json",
+                "rest",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/Crell/ApiProblem/issues",
+                "source": "https://github.com/Crell/ApiProblem/tree/3.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Crell",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-21T03:32:09+00:00"
         },
         {
             "name": "hansott/psr7-cookies",

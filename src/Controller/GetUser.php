@@ -10,9 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class GetUser
 {
     /**
-     * @Route(methods={"GET"}, "/api/user/{userId}")
+     * @Route(methods={"GET"}, "/api/user/{userId}", requirements={"userId": "^\d+$"})
      */
-    public function getUser(string $userId): JsonResponse
+    public function getUser(int $userId): JsonResponse
     {
         return new JsonResponse([
             'id' => $userId,

@@ -14,8 +14,22 @@ abstract class BaseFunctionalTestCase extends WebTestCase
     {
         $response = $client->getResponse();
         $this->assertInstanceOf(Response::class, $response, 'Response missing from client');
-        $content = $response->getContent() ?: 'Response had no content available';
+        $content = $this->getResponseContent($response);
 
         parent::assertStatusCode($expectedStatusCode, $client, $message ?? $content);
+    }
+
+    private function getResponseContent(Response $response): string
+    {
+        $content = $response->getContent();
+
+        if ($content && $content[0] === '{') {
+            $decoded = json_decode($content, true);
+            if (false !== $decoded) {
+                $content = substr(print_r($decoded, true), 6, -1);
+            }
+        }
+
+        return $content ?: 'Response had no content available';
     }
 }
