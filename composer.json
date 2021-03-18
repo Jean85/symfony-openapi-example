@@ -11,9 +11,12 @@
     ],
     "require": {
         "php": "^7.4",
+        "league/openapi-psr7-validator": "^0.15.2",
+        "nyholm/psr7": "^1.4",
+        "symfony/dotenv": "^5.2",
         "symfony/flex": "^1.12",
         "symfony/framework-bundle": "^5.2",
-        "symfony/dotenv": "^5.2",
+        "symfony/psr-http-message-bridge": "^2.1",
         "symfony/yaml": "^5.2"
     },
     "require-dev": {
@@ -35,6 +38,9 @@
         }
     },
     "minimum-stability": "stable",
+    "config": {
+        "sort-packages": true
+    },
     "scripts": {
         "cs-check": "php-cs-fixer fix --dry-run --diff",
         "cs-fix": "php-cs-fixer fix --diff",
