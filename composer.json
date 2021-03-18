@@ -1,0 +1,32 @@
+{
+    "name": "jean85/symfony-openapi-example",
+    "description": "An example of using an OpenAPI spec in a Symfony application",
+    "type": "project",
+    "require": {
+        "php": "^7.4",
+        "symfony/flex": "^1.12",
+        "symfony/framework-bundle": "^5.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.81",
+        "vimeo/psalm": "^4.6",
+        "phpunit/phpunit": "^9.5",
+        "facile-it/facile-coding-standard": "^0.4.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alessandro Lai",
+            "email": "alessandro.lai85@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix --diff",
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
+    }
+}
