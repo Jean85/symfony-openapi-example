@@ -14,7 +14,7 @@ servers:
   - url: 'http://localhost:80'
     description: Local
 paths:
-  '/users/{userId}':
+  '/api/users/{userId}':
     parameters:
       - schema:
           type: integer
@@ -116,7 +116,7 @@ paths:
         description: Patch user properties to update.
       tags:
         - user
-  /user:
+  /api/user:
     post:
       summary: Create New User
       operationId: post-user

@@ -30,7 +30,7 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
     {
         $apiProblem = $this->createApiProblem($event->getThrowable());
         $response = new JsonResponse(
-            $apiProblem, 
+            $apiProblem,
             $apiProblem->getStatus(),
             ['Content-type' => ApiProblem::CONTENT_TYPE_JSON]
         );

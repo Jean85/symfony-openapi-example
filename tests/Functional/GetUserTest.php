@@ -9,11 +9,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GetUserTest extends BaseFunctionalTestCase
 {
+    public function testGetUserWithWrongParameter(): void
+    {
+        $client = self::createClient();
+
+        $client->request(Request::METHOD_GET, '/api/users/jean85');
+
+        $this->assertStatusCode(Response::HTTP_NOT_FOUND, $client);
+    }
+
     public function testGetUser(): void
     {
         $client = self::createClient();
 
-        $client->request(Request::METHOD_GET, '/api/user/jean85');
+        $client->request(Request::METHOD_GET, '/api/users/1');
 
         $this->assertStatusCode(Response::HTTP_OK, $client);
     }
