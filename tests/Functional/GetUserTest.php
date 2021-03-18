@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Functional;
 
-use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class GetUserTest extends WebTestCase
+class GetUserTest extends BaseFunctionalTestCase
 {
     public function testGetUser(): void
     {
@@ -15,6 +15,6 @@ class GetUserTest extends WebTestCase
 
         $client->request(Request::METHOD_GET, '/api/user/jean85');
 
-        $this->assertStatusCodeIsSuccessful($client);
+        $this->assertStatusCode(Response::HTTP_OK, $client);
     }
 }
