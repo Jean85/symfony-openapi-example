@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 class UserControllerTest extends BaseFunctionalTestCase
 {
     private const VALID_POST_DATA = [
-        'fistName' => 'Alessandro',
+        'firstName' => 'Alessandro',
         'lastName' => 'Lai',
         'email' => 'alessandro.lai85@gmail.com',
-        'birthDate' => '1990-01-01',
+        'dateOfBirth' => '1990-01-01',
     ];
 
     public function testGetUserWithWrongParameter(): void
@@ -59,7 +59,8 @@ class UserControllerTest extends BaseFunctionalTestCase
         $client->request(Request::METHOD_POST, '/api/user', [], [], ['CONTENT_TYPE' => 'application/json'], $payload);
 
         $this->assertStatusCode(Response::HTTP_CREATED, $client);
-        $this->assertEmpty($client->getResponse()->getContent());
+        $response = $this->decodeResponse($client);
+        $this->assertEquals(self::VALID_POST_DATA + UserController::USER_DATA[1], $response);
     }
 
     /**
@@ -95,8 +96,8 @@ class UserControllerTest extends BaseFunctionalTestCase
             'invalid email' => [
                 ['email' => 'baz'] + self::VALID_POST_DATA,
             ],
-            'invalid birthDate' => [
-                ['birthDate' => 'baz'] + self::VALID_POST_DATA,
+            'invalid dateOfBirth' => [
+                ['dateOfBirth' => 'baz'] + self::VALID_POST_DATA,
             ],
         ];
     }

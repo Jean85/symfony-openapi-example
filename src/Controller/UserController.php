@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Webmozart\Assert\Assert;
 
 class UserController
 {
@@ -45,10 +48,14 @@ class UserController
     /**
      * @Route(methods={"POST"}, "/api/user")
      */
-    public function post(): JsonResponse
+    public function post(Request $request): JsonResponse
     {
         // it doesn't really work, I know!
+        /** @var string $content */
+        $content = $request->getContent();
+        $data = \Safe\json_decode($content, true);
+        Assert::isArray($data);
 
-        return new JsonResponse();
+        return new JsonResponse($data + self::USER_DATA[1], Response::HTTP_CREATED);
     }
 }
