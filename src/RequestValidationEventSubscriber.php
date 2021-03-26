@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App;
 
-use League\OpenAPIValidation\PSR7\Exception\ValidationFailed;
 use League\OpenAPIValidation\PSR7\RequestValidator;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class RequestValidationEventSubscriber implements EventSubscriberInterface
@@ -40,11 +38,6 @@ class RequestValidationEventSubscriber implements EventSubscriberInterface
         }
 
         $psr7request = $this->psrHttpFactory->createRequest($event->getRequest());
-
-        try {
-            $this->requestValidator->validate($psr7request);
-        } catch (ValidationFailed $exception) {
-            throw new BadRequestHttpException($exception->getMessage(), $exception);
-        }
+        $this->requestValidator->validate($psr7request);
     }
 }

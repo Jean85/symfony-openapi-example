@@ -6,6 +6,7 @@ namespace App;
 
 use Crell\ApiProblem\ApiProblem;
 use League\OpenAPIValidation\PSR7\Exception\ValidationFailed;
+use League\OpenAPIValidation\Schema\Exception\SchemaMismatch;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,6 +60,11 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
             $apiProblem->setStatus(Response::HTTP_BAD_REQUEST);
             $apiProblem->setTitle('OpenAPI validation failed: ' . $error->getMessage());
             $apiProblem->setType('https://alessandrolai.dev/problem/openapi-validation-failed');
+
+            $previous = $error->getPrevious();
+            if ($previous instanceof SchemaMismatch) {
+                $apiProblem->setDetail($this->getSchemaMismatchDetail($previous));
+            }
         }
 
         return $apiProblem;
@@ -76,5 +82,26 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         }
 
         throw new \RuntimeException('Cannot find the Symfony listener priority');
+    }
+
+    private function getSchemaMismatchDetail(SchemaMismatch $error): string
+    {
+        if (null === $breadCrumb = $error->dataBreadCrumb()) {
+            return 'N/A';
+        }
+
+        $path = ' [root]';
+
+        /** @var array<int|string> $chain */
+        $chain = $breadCrumb->buildChain();
+        foreach ($chain as $key => $value) {
+            if (\is_int($value)) {
+                $path .= '[' . $value . ']';
+            } else {
+                $path .= '->' . $value;
+            }
+        }
+
+        return $error->getMessage() . $path;
     }
 }
