@@ -97,7 +97,7 @@ paths:
       summary: Create New User
       operationId: post-user
       responses:
-        '200':
+        '201':
           description: User Created
           content:
             application/json:
@@ -164,6 +164,7 @@ components:
         dateOfBirth:
           type: string
           format: date
+          pattern: '^\d{4}-\d{2}-\d{2}$'
           example: '1997-10-31'
         emailVerified:
           type: boolean
@@ -172,6 +173,7 @@ components:
         createDate:
           type: string
           format: date
+          pattern: '^\d{4}-\d{2}-\d{2}$'
           description: The date that the user was created.
           readOnly: true
       required:
