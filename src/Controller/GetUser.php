@@ -17,6 +17,7 @@ class GetUser
             'lastName' => 'Lai',
             'email' => 'test@alessandrolai.dev',
             'emailVerified' => true,
+            'createDate' => '2020-01-01',
         ],
         2 => [
             'id' => 2,

@@ -40,7 +40,7 @@ paths:
                     email: alice.smith@gmail.com
                     dateOfBirth: '1997-10-31'
                     emailVerified: true
-                    signUpDate: '2019-08-24'
+                    createDate: '2019-08-24'
         '404':
           description: User Not Found
       operationId: get-users-userId
@@ -56,19 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  firstName:
-                    type: string
-                  lastName:
-                    type: string
-                  email:
-                    type: string
-                    format: email
-                  dateOfBirth:
-                    type: string
-                    format: date
-                    example: '1997-10-31'
+                $ref: '#/components/schemas/User'
               examples:
                 Updated User Rebecca Baker:
                   value:
@@ -88,26 +76,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              minProperties: 1
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  format: email
-                dateOfBirth:
-                  type: string
-                  format: date
-                  example: '1997-10-31'
+              $ref: '#/components/schemas/User'
             examples:
               Update First Name:
                 value:
                   firstName: Rebecca
               Update Email:
                 value:
+                  id: 123
                   email: rebecca@gmail.com
               Update Last Name & Date of Birth:
                 value:
@@ -145,22 +121,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
+              $ref: '#/components/schemas/User'
             examples:
               Create User Bob Fellow:
                 value:
@@ -191,6 +152,8 @@ components:
         id:
           type: integer
           description: Unique identifier for the given user.
+          minimum: 1
+          readOnly: true
         firstName:
           type: string
         lastName:
@@ -205,16 +168,19 @@ components:
         emailVerified:
           type: boolean
           description: Set to true if the user's email has been verified.
+          readOnly: true
         createDate:
           type: string
           format: date
           description: The date that the user was created.
+          readOnly: true
       required:
         - id
         - firstName
         - lastName
         - email
         - emailVerified
+        - createDate
 tags:
   - name: user
     description: Operations over users
