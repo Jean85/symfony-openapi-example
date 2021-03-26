@@ -1,7 +1,7 @@
 build: composer-install code-style-fix psalm phpstan test
 
 composer-install:
-	composer install --ansi
+	APP_ENV=test composer install --ansi
 
 composer-update:
 	composer update --ansi
