@@ -17,6 +17,7 @@
         "symfony/dotenv": "^5.2",
         "symfony/flex": "^1.12",
         "symfony/framework-bundle": "^5.2",
+        "symfony/monolog-bundle": "^3.6",
         "symfony/psr-http-message-bridge": "^2.1",
         "symfony/yaml": "^5.2",
         "webmozart/assert": "^1.10"
