@@ -33,10 +33,8 @@ abstract class BaseFunctionalTestCase extends WebTestCase
         $content = $response->getContent();
 
         if ($content && $content[0] === '{') {
-            $decoded = json_decode($content, true);
-            if (false !== $decoded) {
-                $content = substr(print_r($decoded, true), 6, -1);
-            }
+            $decoded = \Safe\json_decode($content, true);
+            $content = \Safe\substr(print_r($decoded, true), 6, -1);
         }
 
         return $content ?: 'Response had no content available';
@@ -51,7 +49,7 @@ abstract class BaseFunctionalTestCase extends WebTestCase
         $this->assertNotFalse($content);
         $this->assertJson($content);
 
-        $decodedResponse = json_decode($content, true, JSON_THROW_ON_ERROR);
+        $decodedResponse = \Safe\json_decode($content, true);
 
         $this->assertIsArray($decodedResponse, 'Content of response was not a JSON object, got: ' . $content);
 

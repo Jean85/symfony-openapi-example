@@ -41,4 +41,14 @@ class UserController
 
         return new JsonResponse(self::USER_DATA[$userId]);
     }
+
+    /**
+     * @Route(methods={"POST"}, "/api/user")
+     */
+    public function post(): JsonResponse
+    {
+        // it doesn't really work, I know!
+
+        return new JsonResponse();
+    }
 }
