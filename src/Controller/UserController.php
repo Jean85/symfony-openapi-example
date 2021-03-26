@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GetUser
+class UserController
 {
     public const USER_DATA = [
         1 => [
@@ -33,7 +33,7 @@ class GetUser
     /**
      * @Route(methods={"GET"}, "/api/users/{userId}", requirements={"userId": "^\d+$"})
      */
-    public function getUser(int $userId): JsonResponse
+    public function get(int $userId): JsonResponse
     {
         if (! array_key_exists($userId, self::USER_DATA)) {
             throw new NotFoundHttpException('User not found');

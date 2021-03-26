@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Functional;
 
-use App\Controller\GetUser;
+use App\Controller\UserController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GetUserTest extends BaseFunctionalTestCase
+class UserControllerTest extends BaseFunctionalTestCase
 {
     public function testGetUserWithWrongParameter(): void
     {
@@ -30,7 +30,7 @@ class GetUserTest extends BaseFunctionalTestCase
 
         $this->assertStatusCode(Response::HTTP_OK, $client);
         $data = $this->decodeResponse($client);
-        $this->assertSame(GetUser::USER_DATA[$userId], $data);
+        $this->assertSame(UserController::USER_DATA[$userId], $data);
     }
 
     /**
